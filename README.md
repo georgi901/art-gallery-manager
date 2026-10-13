@@ -6,11 +6,11 @@
 ![Tests](https://img.shields.io/badge/tests-17%20passing-success.svg)
 ![CI](https://img.shields.io/badge/CI-GitHub%20Actions-2088FF.svg?logo=githubactions&logoColor=white)
 
-Full-stack art gallery management platform for managing galleries, artists,
-artworks, exhibitions, locations, sponsors and awards. The project evolved
-from an academic Oracle database application into a portfolio-ready system
-with a REST API, JWT authentication, role-based authorization, secure image
-uploads, automated tests, Docker and CI/CD.
+Web application for managing galleries, artists, artworks, exhibitions,
+locations, sponsors and awards. It combines an interactive frontend with an
+Express REST API and an Oracle database, together with JWT authentication,
+role-based authorization, secure image uploads, automated tests, Docker
+support and CI/CD.
 
 > The academic documentation in `docs/academic/` is an updated English
 > version of the original project documentation. Legacy database diagrams are
