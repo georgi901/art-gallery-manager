@@ -1,0 +1,111 @@
+INSERT INTO SEDIU VALUES (1, 'Atelier Verde', 'Elena Pop', 'Str. Florilor 10', 2010, '10:00-18:00', 'pictura', 'https://example.com/atelier-verde');
+INSERT INTO SEDIU VALUES (2, 'Galeria Lumina', 'Mihai Ionescu', 'Bd. Unirii 22', 2012, '09:00-17:00', 'sculptura', 'https://example.com/galeria-lumina');
+INSERT INTO SEDIU VALUES (3, 'Spatiul Nord', 'Ioana Marin', 'Str. Mestecenilor 5', 2015, '11:00-19:00', 'pictura', 'https://example.com/spatiul-nord');
+INSERT INTO SEDIU VALUES (4, 'Casa Artei', 'Radu Pavel', 'Str. Academiei 8', 2008, '10:00-20:00', 'multimedia', 'https://example.com/casa-artei');
+INSERT INTO SEDIU VALUES (5, 'Centrul Contur', 'Ana Dima', 'Str. Libertatii 31', 2018, '12:00-20:00', 'pictura', 'https://example.com/centrul-contur');
+
+INSERT INTO LOCATIE VALUES (1, 'Sala Mare', 'interior', 450, 'Romania', 'Str. Florilor 10', 'sala', 180);
+INSERT INTO LOCATIE VALUES (2, 'Sala Nord', 'interior', 220, 'Romania', 'Str. Mestecenilor 5', 'sala', 90);
+INSERT INTO LOCATIE VALUES (3, 'Curtea Centrala', 'exterior', 600, 'Romania', 'Str. Academiei 8', 'curte', 250);
+INSERT INTO LOCATIE VALUES (4, 'Studio Mic', 'interior', 120, 'Romania', 'Bd. Unirii 22', 'studio', 45);
+INSERT INTO LOCATIE VALUES (5, 'Spatiu Experimental', 'interior', 300, 'Romania', 'Str. Libertatii 31', 'studio', 110);
+
+INSERT INTO ARTIST VALUES (1, 'Ana Rusu', DATE '1980-03-12', NULL, 'romana', 'pictura abstracta');
+INSERT INTO ARTIST VALUES (2, 'Vlad Neagu', DATE '1975-08-20', NULL, 'roman', 'sculptura');
+INSERT INTO ARTIST VALUES (3, 'Mara Stan', DATE '1990-01-05', NULL, 'romana', 'arta digitala');
+INSERT INTO ARTIST VALUES (4, 'Dorian Ilie', DATE '1968-11-17', NULL, 'roman', 'peisaj');
+INSERT INTO ARTIST VALUES (5, 'Sorina Pavel', DATE '1987-06-29', NULL, 'romana', 'portret');
+INSERT INTO ARTIST VALUES (6, 'Teodor Muresan', DATE '1979-09-14', NULL, 'roman', 'instalatie');
+INSERT INTO ARTIST VALUES (7, 'Irina Voicu', DATE '1993-02-21', NULL, 'romana', 'colaj');
+INSERT INTO ARTIST VALUES (8, 'Paul Ene', DATE '1965-04-03', NULL, 'roman', 'gravura');
+INSERT INTO ARTIST VALUES (9, 'Carmen Luca', DATE '1982-12-10', NULL, 'romana', 'minimalism');
+INSERT INTO ARTIST VALUES (10, 'Nicu Barbu', DATE '1972-07-07', NULL, 'roman', 'arta conceptuala');
+
+INSERT INTO OPERA (ID_OPERA, TITLU, AN_REALIZARE, TEHNICA, SUPORT, INALTIME_CM, LATIME_CM, ID_ARTIST) VALUES (1, 'Linia Verde', 2019, 'acrilic', 'panza', 80, 120, 1);
+INSERT INTO OPERA (ID_OPERA, TITLU, AN_REALIZARE, TEHNICA, SUPORT, INALTIME_CM, LATIME_CM, ID_ARTIST) VALUES (2, 'Structura Alba', 2020, 'metal', 'otel', 150, 60, 2);
+INSERT INTO OPERA (ID_OPERA, TITLU, AN_REALIZARE, TEHNICA, SUPORT, INALTIME_CM, LATIME_CM, ID_ARTIST) VALUES (3, 'Pixel de Seara', 2021, 'digital', 'ecran', 70, 100, 3);
+INSERT INTO OPERA (ID_OPERA, TITLU, AN_REALIZARE, TEHNICA, SUPORT, INALTIME_CM, LATIME_CM, ID_ARTIST) VALUES (4, 'Drum de Toamna', 2018, 'ulei', 'panza', 90, 130, 4);
+INSERT INTO OPERA (ID_OPERA, TITLU, AN_REALIZARE, TEHNICA, SUPORT, INALTIME_CM, LATIME_CM, ID_ARTIST) VALUES (5, 'Chip Calm', 2022, 'ulei', 'panza', 75, 55, 5);
+INSERT INTO OPERA (ID_OPERA, TITLU, AN_REALIZARE, TEHNICA, SUPORT, INALTIME_CM, LATIME_CM, ID_ARTIST) VALUES (6, 'Retea', 2020, 'instalatie', 'material mixt', 200, 180, 6);
+INSERT INTO OPERA (ID_OPERA, TITLU, AN_REALIZARE, TEHNICA, SUPORT, INALTIME_CM, LATIME_CM, ID_ARTIST) VALUES (7, 'Fragmente', 2023, 'colaj', 'hartie', 60, 80, 7);
+INSERT INTO OPERA (ID_OPERA, TITLU, AN_REALIZARE, TEHNICA, SUPORT, INALTIME_CM, LATIME_CM, ID_ARTIST) VALUES (8, 'Semn de Apa', 2017, 'gravura', 'hartie', 40, 50, 8);
+INSERT INTO OPERA (ID_OPERA, TITLU, AN_REALIZARE, TEHNICA, SUPORT, INALTIME_CM, LATIME_CM, ID_ARTIST) VALUES (9, 'Spatiu Gol', 2021, 'acrilic', 'panza', 100, 100, 9);
+INSERT INTO OPERA (ID_OPERA, TITLU, AN_REALIZARE, TEHNICA, SUPORT, INALTIME_CM, LATIME_CM, ID_ARTIST) VALUES (10, 'Intre Planuri', 2022, 'tehnica mixta', 'lemn', 110, 90, 10);
+INSERT INTO OPERA (ID_OPERA, TITLU, AN_REALIZARE, TEHNICA, SUPORT, INALTIME_CM, LATIME_CM, ID_ARTIST) VALUES (11, 'Orizont Rosu', 2020, 'acrilic', 'panza', 70, 110, 1);
+INSERT INTO OPERA (ID_OPERA, TITLU, AN_REALIZARE, TEHNICA, SUPORT, INALTIME_CM, LATIME_CM, ID_ARTIST) VALUES (12, 'Trepte', 2019, 'metal', 'aluminiu', 130, 45, 2);
+INSERT INTO OPERA (ID_OPERA, TITLU, AN_REALIZARE, TEHNICA, SUPORT, INALTIME_CM, LATIME_CM, ID_ARTIST) VALUES (13, 'Noapte Sintetica', 2023, 'digital', 'ecran', 80, 140, 3);
+INSERT INTO OPERA (ID_OPERA, TITLU, AN_REALIZARE, TEHNICA, SUPORT, INALTIME_CM, LATIME_CM, ID_ARTIST) VALUES (14, 'Valea Lunga', 2016, 'ulei', 'panza', 95, 150, 4);
+INSERT INTO OPERA (ID_OPERA, TITLU, AN_REALIZARE, TEHNICA, SUPORT, INALTIME_CM, LATIME_CM, ID_ARTIST) VALUES (15, 'Privire', 2021, 'ulei', 'panza', 65, 50, 5);
+INSERT INTO OPERA (ID_OPERA, TITLU, AN_REALIZARE, TEHNICA, SUPORT, INALTIME_CM, LATIME_CM, ID_ARTIST) VALUES (16, 'Noduri', 2018, 'instalatie', 'sfoara', 180, 160, 6);
+INSERT INTO OPERA (ID_OPERA, TITLU, AN_REALIZARE, TEHNICA, SUPORT, INALTIME_CM, LATIME_CM, ID_ARTIST) VALUES (17, 'Caiet Deschis', 2024, 'colaj', 'hartie', 55, 75, 7);
+INSERT INTO OPERA (ID_OPERA, TITLU, AN_REALIZARE, TEHNICA, SUPORT, INALTIME_CM, LATIME_CM, ID_ARTIST) VALUES (18, 'Umbra', 2017, 'gravura', 'hartie', 45, 65, 8);
+INSERT INTO OPERA (ID_OPERA, TITLU, AN_REALIZARE, TEHNICA, SUPORT, INALTIME_CM, LATIME_CM, ID_ARTIST) VALUES (19, 'Modul', 2022, 'acrilic', 'panza', 85, 85, 9);
+INSERT INTO OPERA (ID_OPERA, TITLU, AN_REALIZARE, TEHNICA, SUPORT, INALTIME_CM, LATIME_CM, ID_ARTIST) VALUES (20, 'Punct de Fuga', 2024, 'tehnica mixta', 'lemn', 120, 95, 10);
+
+INSERT INTO EXPOZITIE VALUES (1, 'Forme Verzi', 'Relatia dintre natura si oras', 'Forme Verzi', DATE '2020-03-01', DATE '2020-04-15', 'general', 25, 1, 1);
+INSERT INTO EXPOZITIE VALUES (2, 'Corp si Metal', 'Materialitate contemporana', 'Corp si Metal', DATE '2021-05-10', DATE '2021-06-20', 'general', 30, 2, 4);
+INSERT INTO EXPOZITIE VALUES (3, 'Semnale Digitale', 'Imaginea in era tehnologiei', 'Semnale Digitale', DATE '2022-02-01', DATE '2022-03-30', 'tineri', 15, 4, 3);
+INSERT INTO EXPOZITIE VALUES (4, 'Peisaje Interioare', 'Memorie si spatiu', 'Peisaje Interioare', DATE '2022-09-01', DATE '2022-10-15', 'general', 20, 3, 2);
+INSERT INTO EXPOZITIE VALUES (5, 'Portrete Apropiate', 'Identitate si expresie', 'Portrete Apropiate', DATE '2023-01-15', DATE '2023-02-28', 'general', 35, 5, 5);
+INSERT INTO EXPOZITIE VALUES (6, 'Hartie si Memorie', 'Colaj, gravura si arhiva', 'Hartie si Memorie', DATE '2023-06-01', DATE '2023-07-20', 'studenti', 10, 1, 1);
+INSERT INTO EXPOZITIE VALUES (7, 'Linii Noi', 'Experiment vizual', 'Linii Noi', DATE '2024-02-01', DATE '2024-03-15', 'tineri', 18, 3, 2);
+INSERT INTO EXPOZITIE VALUES (8, 'Selectia Anuala', 'Lucrari recente', 'Selectia Anuala', DATE '2024-09-01', DATE '2024-11-01', 'general', 40, 5, 5);
+
+INSERT INTO SPONSOR VALUES (1, 'Nordic Design', 'companie', 'design', 'financiar', 'contact@nordic.example', '+40111111111');
+INSERT INTO SPONSOR VALUES (2, 'Atelier Local', 'companie', 'productie', 'materiale', 'hello@atelier.example', '+40222222222');
+INSERT INTO SPONSOR VALUES (3, 'Fundatia Arta Noua', 'fundatie', 'cultura', 'financiar', 'office@artanoua.example', '+40333333333');
+INSERT INTO SPONSOR VALUES (4, 'Studio Meridian', 'companie', 'media', 'promovare', 'contact@meridian.example', '+40444444444');
+INSERT INTO SPONSOR VALUES (5, 'Asociatia Contur', 'asociatie', 'educatie', 'financiar', 'office@contur.example', '+40555555555');
+
+INSERT INTO SPONSORIZARE VALUES (1, 1, 10000, DATE '2020-01-15');
+INSERT INTO SPONSORIZARE VALUES (1, 3, 8000, DATE '2020-02-01');
+INSERT INTO SPONSORIZARE VALUES (2, 2, 7000, DATE '2021-03-10');
+INSERT INTO SPONSORIZARE VALUES (3, 4, 9000, DATE '2022-07-12');
+INSERT INTO SPONSORIZARE VALUES (4, 5, 6000, DATE '2023-01-05');
+INSERT INTO SPONSORIZARE VALUES (5, 1, 12000, DATE '2024-01-20');
+
+INSERT INTO PREMIU VALUES (1, 'Premiul Juriului', 'national', 1, 'pictura', 'Originalitate', 2020);
+INSERT INTO PREMIU VALUES (2, 'Premiul Criticii', 'national', 2, 'sculptura', 'Impact vizual', 2020);
+INSERT INTO PREMIU VALUES (3, 'Premiul Publicului', 'local', 1, 'arta digitala', 'Votul publicului', 2021);
+INSERT INTO PREMIU VALUES (4, 'Premiul Debut', 'local', 1, 'colaj', 'Artist emergent', 2022);
+INSERT INTO PREMIU VALUES (5, 'Premiul Forme', 'international', 3, 'pictura', 'Cercetare vizuala', 2022);
+INSERT INTO PREMIU VALUES (6, 'Premiul Contur', 'national', 2, 'gravura', 'Tehnica', 2023);
+INSERT INTO PREMIU VALUES (7, 'Premiul Meridian', 'local', 1, 'instalatie', 'Experiment', 2023);
+INSERT INTO PREMIU VALUES (8, 'Premiul Anual', 'national', 1, 'pictura', 'Coerenta', 2024);
+INSERT INTO PREMIU VALUES (9, 'Premiul Nou', 'local', 2, 'arta conceptuala', 'Idee', 2024);
+INSERT INTO PREMIU VALUES (10, 'Premiul Studio', 'international', 1, 'multimedia', 'Inovatie', 2024);
+
+INSERT INTO EXPOZITIE_OPERA VALUES (1, 1, 'A1');
+INSERT INTO EXPOZITIE_OPERA VALUES (1, 4, 'A2');
+INSERT INTO EXPOZITIE_OPERA VALUES (1, 11, 'A3');
+INSERT INTO EXPOZITIE_OPERA VALUES (2, 2, 'B1');
+INSERT INTO EXPOZITIE_OPERA VALUES (2, 6, 'B2');
+INSERT INTO EXPOZITIE_OPERA VALUES (2, 12, 'B3');
+INSERT INTO EXPOZITIE_OPERA VALUES (3, 3, 'C1');
+INSERT INTO EXPOZITIE_OPERA VALUES (3, 13, 'C2');
+INSERT INTO EXPOZITIE_OPERA VALUES (3, 20, 'C3');
+INSERT INTO EXPOZITIE_OPERA VALUES (4, 4, 'D1');
+INSERT INTO EXPOZITIE_OPERA VALUES (4, 9, 'D2');
+INSERT INTO EXPOZITIE_OPERA VALUES (4, 14, 'D3');
+INSERT INTO EXPOZITIE_OPERA VALUES (5, 5, 'E1');
+INSERT INTO EXPOZITIE_OPERA VALUES (5, 10, 'E2');
+INSERT INTO EXPOZITIE_OPERA VALUES (5, 15, 'E3');
+INSERT INTO EXPOZITIE_OPERA VALUES (6, 7, 'F1');
+INSERT INTO EXPOZITIE_OPERA VALUES (6, 8, 'F2');
+INSERT INTO EXPOZITIE_OPERA VALUES (6, 18, 'F3');
+INSERT INTO EXPOZITIE_OPERA VALUES (7, 1, 'G1');
+INSERT INTO EXPOZITIE_OPERA VALUES (7, 17, 'G2');
+INSERT INTO EXPOZITIE_OPERA VALUES (8, 9, 'H1');
+INSERT INTO EXPOZITIE_OPERA VALUES (8, 19, 'H2');
+
+INSERT INTO OPERA_PREMIU VALUES (1, 1, DATE '2020-04-15', 'Forme Verzi');
+INSERT INTO OPERA_PREMIU VALUES (2, 2, DATE '2020-06-20', 'Corp si Metal');
+INSERT INTO OPERA_PREMIU VALUES (3, 3, DATE '2021-03-30', 'Semnale Digitale');
+INSERT INTO OPERA_PREMIU VALUES (4, 5, DATE '2022-10-15', 'Peisaje Interioare');
+INSERT INTO OPERA_PREMIU VALUES (5, 8, DATE '2024-11-01', 'Selectia Anuala');
+INSERT INTO OPERA_PREMIU VALUES (7, 4, DATE '2023-07-20', 'Hartie si Memorie');
+INSERT INTO OPERA_PREMIU VALUES (8, 6, DATE '2023-07-20', 'Hartie si Memorie');
+INSERT INTO OPERA_PREMIU VALUES (10, 9, DATE '2024-11-01', 'Selectia Anuala');
+INSERT INTO OPERA_PREMIU VALUES (13, 10, DATE '2024-03-15', 'Linii Noi');
+
+COMMIT;

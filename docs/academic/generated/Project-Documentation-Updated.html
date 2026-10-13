@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Georgiana Valentina Spătaru — Group 263 CTI" />
+  <title>Art Gallery Management System</title>
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    html {
+      font-size: 11pt;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Art Gallery Management System</h1>
+<p class="author">Georgiana Valentina Spătaru — Group 263 CTI</p>
+</header>
+<blockquote>
+<p><strong>Documentation status:</strong> This document is an updated
+English version of the original project documentation. It preserves the
+original academic content while incorporating the current full-stack
+implementation, security model, testing strategy and deployment
+configuration.</p>
+</blockquote>
+<h1 id="chapter-i-system-analysis-and-data-modeling">Chapter I — System
+analysis and data modeling</h1>
+<h2 id="introduction">Introduction</h2>
+<p>This project implements a management system for a network of art
+galleries. Its purpose is to centralize information about gallery
+branches, artists, artworks, exhibitions, locations, sponsors and
+awards, while also providing a web interface for managing this data.</p>
+<p>The system is not limited to a single gallery. A branch can organize
+multiple exhibitions, collaborate with multiple sponsors and display
+artworks created by different artists.</p>
+<h2 id="entities-and-relationships">Entities and relationships</h2>
+<p>The main entities are:</p>
+<ul>
+<li><code>SEDIU</code> — galleries in the network;</li>
+<li><code>ARTIST</code> — artwork creators;</li>
+<li><code>OPERA</code> — artworks;</li>
+<li><code>EXPOZITIE</code> — exhibitions organized by galleries;</li>
+<li><code>LOCATIE</code> — physical exhibition locations;</li>
+<li><code>SPONSOR</code> — companies or individuals providing
+support;</li>
+<li><code>PREMIU</code> — artistic awards;</li>
+<li><code>USERS</code> — application users.</li>
+</ul>
+<p>Many-to-many relationships are modeled through:</p>
+<ul>
+<li><code>SPONSORIZARE</code> between <code>SEDIU</code> and
+<code>SPONSOR</code>;</li>
+<li><code>EXPOZITIE_OPERA</code> between <code>EXPOZITIE</code> and
+<code>OPERA</code>;</li>
+<li><code>OPERA_PREMIU</code> between <code>OPERA</code> and
+<code>PREMIU</code>.</li>
+</ul>
+<p>The updated relational diagram is available in
+<code>docs/ERD.md</code>.</p>
+<h2 id="integrity-rules">Integrity rules</h2>
+<p>The Oracle schema uses primary keys, foreign keys,
+<code>NOT NULL</code>, <code>UNIQUE</code> and <code>CHECK</code>
+constraints.</p>
+<p>Examples:</p>
+<ul>
+<li>an artwork must have a title and an artist;</li>
+<li>an exhibition must have a name and a start date;</li>
+<li>artwork dimensions must be positive;</li>
+<li>entrance fees cannot be negative;</li>
+<li>an exhibition end date, when present, cannot precede its start
+date;</li>
+<li>user usernames and email addresses are unique;</li>
+<li>accepted roles are <code>ADMIN</code>, <code>CURATOR</code> and
+<code>VIEWER</code>.</li>
+</ul>
+<p>Generated identifiers start at 1000. Demo data uses explicit
+identifiers and does not require separate ID ranges for different entity
+types.</p>
+<h1 id="chapter-ii-database-design-and-implementation">Chapter II —
+Database design and implementation</h1>
+<h2 id="oracle-database">Oracle Database</h2>
+<p>The database is implemented in Oracle Database and accessed from
+Node.js through the <code>oracledb</code> driver in Thin mode. The
+database layer is organized as follows:</p>
+<ul>
+<li><code>db/schema.sql</code> — table definitions;</li>
+<li><code>db/constraints.sql</code> — keys and integrity rules;</li>
+<li><code>db/views.sql</code> — application views;</li>
+<li><code>db/seed.sql</code> — demo data;</li>
+<li><code>scripts/db-setup.js</code> — setup, seed and controlled reset
+operations.</li>
+</ul>
+<p>The Oracle pool is not initialized when database variables are
+missing. This allows the health endpoint and database-independent tests
+to run before Oracle is configured.</p>
+<h2 id="delete-propagation">Delete propagation</h2>
+<p>Relationships using <code>ON DELETE CASCADE</code> are used for
+dependencies that can be removed automatically:</p>
+<ul>
+<li>deleting an artist removes the associated artworks;</li>
+<li>deleting an artwork removes links from <code>EXPOZITIE_OPERA</code>
+and <code>OPERA_PREMIU</code>;</li>
+<li>deleting a gallery branch removes its sponsorship links;</li>
+<li>deleting a sponsor removes its sponsorship links;</li>
+<li>deleting an exhibition removes its artwork links.</li>
+</ul>
+<p>No delete propagation is defined for
+<code>EXPOZITIE -&gt; SEDIU</code> and
+<code>EXPOZITIE -&gt; LOCATIE</code>; existing references therefore
+restrict deletion of the parent record.</p>
+<p>The application also provides a read-only impact endpoint:
+<code>GET /api/cascade/check/:table/:id</code>.</p>
+<h2 id="database-views">Database views</h2>
+<p><code>VIEW_OPERE_ARTISTI</code> combines artworks with artist
+information. <code>VIEW_STATISTICI_GALERII_PICTURA</code> calculates the
+number of artworks, number of artists, average artwork area and largest
+artwork for painting galleries.</p>
+<p>Views can only be recreated from a server-side allowlist. The client
+cannot submit arbitrary SQL. In the application, views are used for
+reading; data modifications are performed through CRUD endpoints for the
+underlying tables.</p>
+<h2 id="reports">Reports</h2>
+<p>The application includes reports for:</p>
+<ul>
+<li>exposed artworks filtered by minimum entrance fee and exhibition
+year;</li>
+<li>artists with a minimum number of exposures using
+<code>GROUP BY</code> and <code>HAVING</code>;</li>
+<li>artists ordered by exposure count;</li>
+<li>galleries ordered by exhibition count;</li>
+<li>sponsors ordered by sponsorship value;</li>
+<li>artworks without exhibitions;</li>
+<li>artists whose artworks received awards;</li>
+<li>locations and their capacities.</li>
+</ul>
+<p>Queries are defined server-side and use bind variables for request
+values.</p>
+<h1 id="chapter-iii-web-application">Chapter III — Web application</h1>
+<h2 id="architecture">Architecture</h2>
+<p>The application follows a client-server architecture:</p>
+<ol type="1">
+<li>the browser loads the static frontend;</li>
+<li>the frontend sends HTTP requests to the Express API;</li>
+<li>Node.js services execute operations against Oracle;</li>
+<li>the API returns standardized JSON responses.</li>
+</ol>
+<p>The main technologies are Node.js, Express, OracleDB, HTML, CSS and
+Vanilla JavaScript. The application can run locally or through Docker
+Compose.</p>
+<h2 id="rest-api-and-response-contract">REST API and response
+contract</h2>
+<p>Successful responses use the following structure:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode json"><code class="sourceCode json"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;data&quot;</span><span class="fu">:</span> <span class="fu">{},</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;message&quot;</span><span class="fu">:</span> <span class="st">&quot;Operation completed successfully&quot;</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div>
+<p>Paginated lists additionally include:</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode json"><code class="sourceCode json"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;data&quot;</span><span class="fu">:</span> <span class="ot">[]</span><span class="fu">,</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;pagination&quot;</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;page&quot;</span><span class="fu">:</span> <span class="dv">1</span><span class="fu">,</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;limit&quot;</span><span class="fu">:</span> <span class="dv">20</span><span class="fu">,</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;total&quot;</span><span class="fu">:</span> <span class="dv">0</span><span class="fu">,</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;totalPages&quot;</span><span class="fu">:</span> <span class="dv">0</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">}</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div>
+<p>Errors use explicit codes and messages:</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode json"><code class="sourceCode json"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;error&quot;</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;code&quot;</span><span class="fu">:</span> <span class="st">&quot;VALIDATION_ERROR&quot;</span><span class="fu">,</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;message&quot;</span><span class="fu">:</span> <span class="st">&quot;Invalid request&quot;</span><span class="fu">,</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;fields&quot;</span><span class="fu">:</span> <span class="fu">{}</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">}</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div>
+<h2 id="authentication-and-authorization">Authentication and
+authorization</h2>
+<p>Authentication uses JWT, while passwords are hashed with bcrypt.
+Users can authenticate with either their username or email address.</p>
+<p>Roles:</p>
+<ul>
+<li><code>VIEWER</code> — read-only access;</li>
+<li><code>CURATOR</code> — create, update and upload artwork
+images;</li>
+<li><code>ADMIN</code> — all CRUD operations and role management.</li>
+</ul>
+<p>All API routes except the health check and authentication endpoints
+require a Bearer token. Roles are checked by authorization
+middleware.</p>
+<h2 id="crud-search-and-pagination">CRUD, search and pagination</h2>
+<p>The interface provides CRUD operations for the main entities and
+operations for junction tables. Lists support:</p>
+<pre class="text"><code>page=1&amp;limit=20&amp;search=painting&amp;sortBy=NUME&amp;sortOrder=ASC</code></pre>
+<p>Resource names, column names and sort directions are validated
+through server-side allowlists. User-provided values are passed through
+bind variables.</p>
+<h2 id="image-uploads">Image uploads</h2>
+<p>Artwork images are uploaded through:</p>
+<pre class="text"><code>POST /api/artworks/:id/image</code></pre>
+<p>The upload uses the multipart field <code>image</code> and accepts
+JPEG, PNG and WebP. The application verifies both the MIME type and
+binary file signature, limits file size and generates UUID-based
+filenames. Only the image URL is stored in the database.</p>
+<h2 id="security">Security</h2>
+<p>The implementation includes:</p>
+<ul>
+<li>Helmet and Content Security Policy;</li>
+<li>configurable CORS;</li>
+<li>rate limiting for authentication;</li>
+<li>JWT and bcrypt;</li>
+<li>server-side validation;</li>
+<li>bind variables;</li>
+<li>allowlists for SQL identifiers;</li>
+<li>centralized error handling;</li>
+<li>role-based route protection;</li>
+<li>validation of the actual image file content.</li>
+</ul>
+<h1 id="chapter-iv-testing-and-delivery">Chapter IV — Testing and
+delivery</h1>
+<h2 id="automated-testing">Automated testing</h2>
+<p>The project uses Jest and Supertest for:</p>
+<ul>
+<li>application smoke tests;</li>
+<li>protected API route checks;</li>
+<li>authentication helpers;</li>
+<li>request validation;</li>
+<li>frontend utility functions;</li>
+<li>Oracle pool tests when database variables are available.</li>
+</ul>
+<p>Validation commands:</p>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">npm</span> run format:check</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="ex">npm</span> run lint</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="ex">npm</span> test</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="ex">npm</span> run test:coverage</span></code></pre></div>
+<p>Oracle integration tests are skipped automatically when the database
+is not configured.</p>
+<h2 id="docker-and-cicd">Docker and CI/CD</h2>
+<p>The <code>Dockerfile</code> builds the Node.js application image.
+<code>docker-compose.yml</code> starts the application and Oracle XE,
+with persistent volumes for database data and uploaded images.</p>
+<p>The GitHub Actions workflow runs:</p>
+<ul>
+<li>reproducible installation through <code>npm ci</code>;</li>
+<li>formatting checks;</li>
+<li>ESLint;</li>
+<li>Jest tests and coverage.</li>
+</ul>
+<p>Dependabot is configured to update npm dependencies and GitHub
+Actions.</p>
+<h1 id="conclusions">Conclusions</h1>
+<p>The project has evolved from a static interface into a full-stack
+application with an Oracle database, REST API, authentication,
+authorization, image uploads, reports, automated tests and containerized
+delivery.</p>
+<p>Complete Oracle behavior must be verified against a configured Oracle
+instance. Dashboard and report values must not be invented before the
+seed data and integration tests have been executed.</p>
+</body>
+</html>

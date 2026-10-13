@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistem de Gestiune al Galeriilor de Artă</title>
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Font Awesome pentru iconițe -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <section class="auth-screen" id="auth-screen">
+        <div class="auth-card">
+            <div class="auth-brand">
+                <i class="fas fa-palette"></i>
+                <h1>Galerii de Artă</h1>
+                <p>Autentificare în sistemul de gestiune</p>
+            </div>
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="login-username">Username sau email</label>
+                    <input id="login-username" name="username" required autocomplete="username">
+                </div>
+                <div class="form-group">
+                    <label for="login-password">Parolă</label>
+                    <input id="login-password" name="password" type="password" required autocomplete="current-password">
+                </div>
+                <button class="btn btn-primary btn-block" type="submit">
+                    <i class="fas fa-sign-in-alt"></i> Autentificare
+                </button>
+            </form>
+            <p class="auth-help">Conturile sunt create de administrator prin scriptul de configurare.</p>
+            <div class="auth-error" id="auth-error" role="alert"></div>
+        </div>
+    </section>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h1><i class="fas fa-palette"></i> Galerii de Artă</h1>
+                <p>Sistem de Gestiune</p>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <div class="nav-section">
+                    <div class="nav-section-title">Principal</div>
+                    <a class="nav-item active" data-page="dashboard">
+                        <i class="fas fa-home"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <div class="nav-section-title">Entități Principale</div>
+                    <a class="nav-item" data-page="sediu" data-table="SEDIU">
+                        <i class="fas fa-building"></i>
+                        <span>Sedii (Galerii)</span>
+                    </a>
+                    <a class="nav-item" data-page="artist" data-table="ARTIST">
+                        <i class="fas fa-user-tie"></i>
+                        <span>Artiști</span>
+                    </a>
+                    <a class="nav-item" data-page="opera" data-table="OPERA">
+                        <i class="fas fa-image"></i>
+                        <span>Opere de Artă</span>
+                    </a>
+                    <a class="nav-item" data-page="expozitie" data-table="EXPOZITIE">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span>Expoziții</span>
+                    </a>
+                    <a class="nav-item" data-page="locatie" data-table="LOCATIE">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Locații</span>
+                    </a>
+                    <a class="nav-item" data-page="sponsor" data-table="SPONSOR">
+                        <i class="fas fa-hand-holding-usd"></i>
+                        <span>Sponsori</span>
+                    </a>
+                    <a class="nav-item" data-page="premiu" data-table="PREMIU">
+                        <i class="fas fa-trophy"></i>
+                        <span>Premii</span>
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <div class="nav-section-title">Tabele de Legătură</div>
+                    <a class="nav-item" data-page="sponsorizare" data-table="SPONSORIZARE">
+                        <i class="fas fa-handshake"></i>
+                        <span>Sponsorizări</span>
+                    </a>
+                    <a class="nav-item" data-page="expozitie_opera" data-table="EXPOZITIE_OPERA">
+                        <i class="fas fa-link"></i>
+                        <span>Expoziții - Opere</span>
+                    </a>
+                    <a class="nav-item" data-page="opera_premiu" data-table="OPERA_PREMIU">
+                        <i class="fas fa-award"></i>
+                        <span>Opere - Premii</span>
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <div class="nav-section-title">Rapoarte & Vizualizări</div>
+                    <a class="nav-item" data-page="rapoarte">
+                        <i class="fas fa-chart-bar"></i>
+                        <span>Rapoarte</span>
+                    </a>
+                    <a class="nav-item" data-page="cascade">
+                        <i class="fas fa-project-diagram"></i>
+                        <span>Demo CASCADE</span>
+                    </a>
+                    <a class="nav-item" data-page="vizualizari">
+                        <i class="fas fa-eye"></i>
+                        <span>Vizualizări (Views)</span>
+                    </a>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="user-bar">
+                <div>
+                    <span class="connection-indicator"></span>
+                    API conectat
+                </div>
+                <div class="user-actions">
+                    <span id="current-user-label"></span>
+                    <span class="role-badge" id="current-user-role"></span>
+                    <button class="btn btn-secondary btn-small" id="logout-button">
+                        <i class="fas fa-sign-out-alt"></i> Ieșire
+                    </button>
+                </div>
+            </header>
+            <!-- Dashboard Page -->
+            <div id="page-dashboard" class="page active">
+                <div class="page-header">
+                    <h1 class="page-title">
+                        <i class="fas fa-home"></i>
+                        Dashboard
+                    </h1>
+                </div>
+                
+                <div class="dashboard-grid" id="dashboard-stats">
+                    <!-- Stats vor fi încărcate dinamic -->
+                </div>
+                
+                <div class="table-container">
+                    <div class="table-header">
+                        <h2 class="table-title"><i class="fas fa-clock"></i> Ultimele Expoziții</h2>
+                    </div>
+                    <div id="recent-expozitii">
+                        <div class="loading"><div class="spinner"></div></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Generic Table Page (pentru toate tabelele) -->
+            <div id="page-table" class="page">
+                <div class="page-header">
+                    <h1 class="page-title" id="table-page-title">
+                        <i class="fas fa-table"></i>
+                        <span>Tabel</span>
+                    </h1>
+                    <button class="btn btn-primary" id="btn-add-new">
+                        <i class="fas fa-plus"></i>
+                        Adaugă Nou
+                    </button>
+                </div>
+                
+                <div class="table-container">
+                    <div class="table-header">
+                        <h2 class="table-title" id="table-subtitle">Lista înregistrărilor</h2>
+                        <div class="table-actions">
+                            <input id="table-search" class="search-input" type="search" placeholder="Caută..." aria-label="Caută înregistrări">
+                            <div class="sort-container">
+                                <label for="sort-column">Sortare:</label>
+                                <select id="sort-column" class="sort-select">
+                                    <option value="">-- Selectează --</option>
+                                </select>
+                                <select id="sort-order" class="sort-select">
+                                    <option value="ASC">Crescător</option>
+                                    <option value="DESC">Descrescător</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="table-content">
+                        <div class="loading"><div class="spinner"></div></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Rapoarte Page -->
+            <div id="page-rapoarte" class="page">
+                <div class="page-header">
+                    <h1 class="page-title">
+                        <i class="fas fa-chart-bar"></i>
+                        Rapoarte
+                    </h1>
+                </div>
+                
+                <!-- Raport c) 3+ tabele, 2+ condiții -->
+                <div class="report-section">
+                    <h3><i class="fas fa-filter"></i> c) Cerere cu minim 3 tabele și 2 condiții</h3>
+                    <p style="color: var(--text-muted); margin-bottom: 12px;">
+                        Afișează rezultatul unei cereri care extrage informații din cel puțin 3 tabele și le filtrează cu ajutorul a cel puțin 2 condiții.
+                    </p>
+                    <div style="background: var(--verde-bg); padding: 12px; border-radius: 8px; margin-bottom: 16px; font-size: 14px;">
+                        <strong>Implementare:</strong> Cererea afișează toate operele de artă care au fost expuse în expoziții, împreună cu informații despre artist, expoziție, sediu și locație, filtrate după taxa de intrare și anul expoziției.<br><br>
+                        <strong>Ce să introduci:</strong><br>
+                        • <em>Taxa minimă intrare</em> - filtrează expozițiile cu taxa >= această valoare<br>
+                        • <em>Anul de început minim</em> - filtrează expozițiile începute din acest an<br><br>
+                        <strong>Ce primești:</strong> Operele expuse cu: artist, expoziție, taxă, perioadă, sediu, locație
+                    </div>
+                    <div class="report-filters">
+                        <div class="filter-group">
+                            <label>Taxa minimă intrare:</label>
+                            <input type="number" id="filter-taxa" value="0" min="0">
+                        </div>
+                        <div class="filter-group">
+                            <label>Anul de început minim:</label>
+                            <input type="number" id="filter-an" value="2020" min="2000" max="2030">
+                        </div>
+                        <button class="btn btn-primary" id="run-report-opere">
+                            <i class="fas fa-play"></i> Rulează Query
+                        </button>
+                    </div>
+                    <div id="report-opere-result"></div>
+                </div>
+                
+                <!-- Raport d) GROUP BY + HAVING -->
+                <div class="report-section">
+                    <h3><i class="fas fa-users"></i> d) Cerere cu funcții grup și clauza HAVING</h3>
+                    <p style="color: var(--text-muted); margin-bottom: 12px;">
+                        Afișează rezultatul unei cereri care folosește funcții grup și clauza HAVING.
+                    </p>
+                    <div style="background: var(--verde-bg); padding: 12px; border-radius: 8px; margin-bottom: 16px; font-size: 14px;">
+                        <strong>Implementare:</strong> Cererea numără de câte ori au fost expuse operele fiecărui artist în expoziții și afișează doar artiștii care au cel puțin un anumit număr de expuneri.<br><br>
+                        <strong>Ce să introduci:</strong><br>
+                        • <em>Număr minim de expuneri</em> - afișează doar artiștii cu cel puțin atâtea expuneri<br><br>
+                        <strong>Ce primești:</strong> Artiștii cu: ID, nume, număr opere distincte, total expuneri
+                    </div>
+                    <div class="report-filters">
+                        <div class="filter-group">
+                            <label>Număr minim de expuneri:</label>
+                            <input type="number" id="filter-min-expuneri" value="2" min="1">
+                        </div>
+                        <button class="btn btn-primary" id="run-report-artisti">
+                            <i class="fas fa-play"></i> Rulează Query
+                        </button>
+                    </div>
+                    <div id="report-artisti-result"></div>
+                </div>
+            </div>
+
+            <!-- CASCADE Demo Page -->
+            <div id="page-cascade" class="page">
+                <div class="page-header">
+                    <h1 class="page-title">
+                        <i class="fas fa-project-diagram"></i>
+                        Demonstrație ON DELETE CASCADE
+                    </h1>
+                </div>
+                
+                <div class="report-section">
+                    <h3><i class="fas fa-exclamation-triangle"></i> e) Constrângere ON DELETE CASCADE</h3>
+                    <p style="color: var(--text-muted); margin-bottom: 12px;">
+                        Implementarea unei constrângeri de tipul ON DELETE CASCADE și exemplificare din interfață.
+                    </p>
+                    <div style="background: var(--verde-bg); padding: 12px; border-radius: 8px; margin-bottom: 16px; font-size: 14px;">
+                        <strong>Implementare:</strong> Când ștergi o înregistrare părinte, toate înregistrările copil asociate sunt șterse automat (CASCADE) sau ștergerea este blocată dacă există copii (RESTRICT).<br><br>
+                        <strong>Ce să faci:</strong><br>
+                        • Selectează un tabel și o înregistrare<br>
+                        • Apasă "Verifică Cascade" pentru a vedea ce va fi afectat<br>
+                        • Apasă "Șterge cu CASCADE" pentru a executa ștergerea<br><br>
+                        <strong>Ce primești:</strong> Lista înregistrărilor care vor fi șterse automat sau mesaj de blocare (RESTRICT)
+                    </div>
+                    
+                    <div class="report-filters">
+                        <div class="filter-group">
+                            <label>Selectează tabelul:</label>
+                            <select id="cascade-table" class="sort-select">
+                                <option value="SEDIU">Sediu - CASCADE (șterge Expoziții, Sponsorizări)</option>
+                                <option value="ARTIST">Artist - CASCADE (șterge Opere)</option>
+                                <option value="LOCATIE">Locație - RESTRICT (blochează dacă are Expoziții)</option>
+                                <option value="SPONSOR">Sponsor - CASCADE (șterge Sponsorizări)</option>
+                                <option value="EXPOZITIE">Expoziție - CASCADE (șterge legături Opere)</option>
+                                <option value="OPERA">Operă - CASCADE (șterge legături Expoziții, Premii)</option>
+                                <option value="PREMIU">Premiu - CASCADE (șterge acordări)</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label>Selectează înregistrarea:</label>
+                            <select id="cascade-record" class="sort-select">
+                                <option value="">-- Încarcă --</option>
+                            </select>
+                        </div>
+                        <button class="btn btn-secondary" id="check-cascade">
+                            <i class="fas fa-search"></i> Verifică Cascade
+                        </button>
+                        <button class="btn btn-danger" id="execute-cascade-delete">
+                            <i class="fas fa-trash"></i> Șterge cu CASCADE
+                        </button>
+                    </div>
+                    
+                    <div id="cascade-preview"></div>
+                </div>
+            </div>
+
+            <!-- Vizualizari Page -->
+            <div id="page-vizualizari" class="page">
+                <div class="page-header">
+                    <h1 class="page-title">
+                        <i class="fas fa-eye"></i>
+                        Vizualizări (Views)
+                    </h1>
+                    <button class="btn btn-primary" id="create-views">
+                        <i class="fas fa-plus"></i> Creează Views
+                    </button>
+                </div>
+                
+                <div class="report-section">
+                    <h3><i class="fas fa-layer-group"></i> f) Utilizarea vizualizărilor</h3>
+                    <p style="color: var(--text-muted); margin-bottom: 12px;">
+                        Cel puțin 2 vizualizări: compusă care să permită operații LMD, respectiv complexă.
+                    </p>
+                    <div style="background: var(--verde-bg); padding: 12px; border-radius: 8px; margin-bottom: 16px; font-size: 14px;">
+                        <strong>Implementare:</strong> Am creat două vizualizări - una compusă care permite operații LMD (INSERT, UPDATE, DELETE) și una complexă cu funcții grup care nu permite aceste operații.<br><br>
+                        <strong>Ce să faci:</strong><br>
+                        • Apasă "Creează Views" pentru a crea vizualizările în baza de date<br>
+                        • Apasă "Afișează Date" pentru a vedea conținutul fiecărei vizualizări<br><br>
+                        <strong>Ce primești:</strong> Datele din vizualizări afișate într-un tabel
+                    </div>
+                </div>
+                
+                <!-- View Compus -->
+                <div class="view-card">
+                    <h3><i class="fas fa-layer-group"></i> VIEW Compusă: Opere cu Artiști</h3>
+                    <p style="color: var(--text-muted); margin-bottom: 12px;">
+                        Vizualizare compusă care permite operații LMD (INSERT, UPDATE, DELETE) pe tabelele de bază.
+                    </p>
+                    <div style="background: var(--verde-bg); padding: 10px; border-radius: 6px; margin-bottom: 12px; font-size: 13px;">
+                        <strong>Implementare:</strong> Cererea afișează operele de artă împreună cu informațiile despre artistul care le-a creat.
+                    </div>
+                    <pre>
+CREATE OR REPLACE VIEW VIEW_OPERE_ARTISTI AS
+SELECT 
+    o.ID_OPERA, o.TITLU, o.AN_REALIZARE, o.TEHNICA,
+    o.INALTIME_CM, o.LATIME_CM,
+    a.NUME AS ARTIST_NUME, a.NATIONALITATE
+FROM OPERA o
+JOIN ARTIST a ON o.ID_ARTIST = a.ID_ARTIST</pre>
+                    <button class="btn btn-secondary" data-view-name="VIEW_OPERE_ARTISTI">
+                        <i class="fas fa-table"></i> Afișează Date
+                    </button>
+                </div>
+                
+                <!-- View Complex -->
+                <div class="view-card">
+                    <h3><i class="fas fa-chart-line"></i> VIEW Complexă: Statistici Galerii Pictură</h3>
+                    <p style="color: var(--text-muted); margin-bottom: 12px;">
+                        Vizualizare complexă cu funcții grup, GROUP BY și HAVING (nu permite operații LMD).
+                    </p>
+                    <div style="background: var(--verde-bg); padding: 10px; border-radius: 6px; margin-bottom: 12px; font-size: 13px;">
+                        <strong>Implementare:</strong> Cererea calculează statistici pentru fiecare galerie de pictură: numărul de opere expuse, numărul de artiști, suprafața medie și cea mai mare operă.
+                    </div>
+                    <pre>
+CREATE OR REPLACE VIEW VIEW_STATISTICI_GALERII_PICTURA AS
+SELECT 
+    s.ID_SEDIU,
+    s.NUME AS SEDIU_NUME,
+    COUNT(DISTINCT o.ID_OPERA) AS NUMAR_OPERE,
+    COUNT(DISTINCT a.ID_ARTIST) AS NUMAR_ARTISTI,
+    ROUND(AVG(o.INALTIME_CM * o.LATIME_CM), 2) AS SUPRAFATA_MEDIE_CM2,
+    MAX(o.INALTIME_CM * o.LATIME_CM) AS CEA_MAI_MARE_OPERA_CM2
+FROM OPERA o
+JOIN ARTIST a ON o.ID_ARTIST = a.ID_ARTIST
+JOIN EXPOZITIE_OPERA eo ON o.ID_OPERA = eo.ID_OPERA
+JOIN EXPOZITIE e ON eo.ID_EXPOZITIE = e.ID_EXPOZITIE
+JOIN SEDIU s ON e.ID_SEDIU = s.ID_SEDIU
+WHERE s.TIP_GALERIE = 'pictura'
+GROUP BY s.ID_SEDIU, s.NUME
+HAVING COUNT(DISTINCT o.ID_OPERA) >= 1</pre>
+                    <button class="btn btn-secondary" data-view-name="VIEW_STATISTICI_GALERII_PICTURA">
+                        <i class="fas fa-table"></i> Afișează Date
+                    </button>
+                </div>
+                
+                <div id="view-result"></div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modal pentru Add/Edit -->
+    <div class="modal-overlay" id="modal-overlay">
+        <div class="modal">
+            <div class="modal-header">
+                <h2 id="modal-title"><i class="fas fa-plus"></i> Adaugă Înregistrare</h2>
+                <button class="modal-close" id="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="record-form">
+                    <!-- Câmpurile vor fi generate dinamic -->
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" id="cancel-modal">Anulează</button>
+                <button class="btn btn-primary" id="save-record">
+                    <i class="fas fa-save"></i> Salvează
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Container -->
+    <div class="toast-container" id="toast-container"></div>
+    <input id="image-upload-input" type="file" accept="image/jpeg,image/png,image/webp" hidden>
+
+    <script src="js/api.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

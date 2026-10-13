@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Georgiana Valentina Spătaru — Group 263 CTI" />
+  <title>Art Gallery Management System — Chapter III</title>
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    html {
+      font-size: 11pt;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Art Gallery Management System — Chapter III</h1>
+<p class="author">Georgiana Valentina Spătaru — Group 263 CTI</p>
+</header>
+<blockquote>
+<p><strong>Documentation status:</strong> This chapter is an updated
+English version of the original Chapter III template. It keeps the
+original requirements while documenting the current implementation.</p>
+</blockquote>
+<h1 id="chapter-iii-web-application">Chapter III — Web application</h1>
+<h2 id="introduction">Introduction</h2>
+<p>A full-stack web application was implemented to interact with the art
+gallery database. The interface allows users to view and manage data,
+while the Express server exposes a secured REST API.</p>
+<h2 id="technologies-used">Technologies used</h2>
+<ul>
+<li>Oracle Database XE;</li>
+<li>Node.js and Express;</li>
+<li><code>oracledb</code> driver in Thin mode;</li>
+<li>HTML5, CSS3 and Vanilla JavaScript;</li>
+<li>JWT and bcrypt;</li>
+<li>Multer for file uploads;</li>
+<li>Jest and Supertest;</li>
+<li>Docker and Docker Compose;</li>
+<li>GitHub Actions and Dependabot.</li>
+</ul>
+<h2 id="application-architecture">Application architecture</h2>
+<p>The browser communicates with the Express application through HTTP.
+The server validates each request, checks authentication and
+authorization, and then calls services that use the Oracle connection
+pool.</p>
+<p>The API uses the <code>GET</code>, <code>POST</code>,
+<code>PUT</code> and <code>DELETE</code> methods. Responses are
+standardized as JSON envelopes, and list endpoints support
+pagination.</p>
+<h2 id="authentication-and-roles">Authentication and roles</h2>
+<p>Users authenticate with either a username or an email address. The
+server checks the password with bcrypt and issues a JWT. The frontend
+stores the token in <code>sessionStorage</code> and sends it through the
+<code>Authorization</code> header.</p>
+<p>Available roles:</p>
+<ul>
+<li><code>VIEWER</code> — read-only access;</li>
+<li><code>CURATOR</code> — create, update and upload artwork
+images;</li>
+<li><code>ADMIN</code> — full CRUD and role administration.</li>
+</ul>
+<h2 id="listing-search-and-sorting">Listing, search and sorting</h2>
+<p>Each resource supports:</p>
+<ul>
+<li>paginated listing;</li>
+<li>debounced search;</li>
+<li>sorting by permitted columns;</li>
+<li>loading and empty states;</li>
+<li>explicit error messages.</li>
+</ul>
+<p>Example:</p>
+<pre class="text"><code>GET /api/artworks?page=1&amp;limit=20&amp;search=landscape&amp;sortBy=TITLU&amp;sortOrder=ASC</code></pre>
+<p>All request parameters are validated on the server. SQL values use
+bind variables, while table and column identifiers are selected from
+allowlists.</p>
+<h2 id="updating-and-deleting-records">Updating and deleting
+records</h2>
+<p>Users with the <code>CURATOR</code> or <code>ADMIN</code> role can
+create and update records. Deletion is restricted to administrators.
+Junction table operations use composite keys.</p>
+<p>The shared frontend API client:</p>
+<ul>
+<li>checks <code>response.ok</code>;</li>
+<li>interprets the JSON response envelope;</li>
+<li>handles HTTP errors by status class;</li>
+<li>removes the token when the session expires.</li>
+</ul>
+<h2 id="reports-and-dashboard">Reports and dashboard</h2>
+<p>The dashboard displays totals for galleries, artists, artworks,
+exhibitions, locations, sponsors and awards. The API can also return
+chart series.</p>
+<p>The reports include:</p>
+<ol type="1">
+<li>exposed artworks filtered by entrance fee and exhibition year;</li>
+<li>artists grouped by exposure count using <code>HAVING</code>;</li>
+<li>additional reports for galleries, sponsors, awards and
+locations.</li>
+</ol>
+<h2 id="cascade-and-restrict">CASCADE and RESTRICT</h2>
+<p>The demonstration page allows the user to select a record and preview
+its dependent records before deletion. The backend returns the expected
+impact, while Oracle applies the <code>ON DELETE CASCADE</code> or
+restrictive behavior defined by the schema.</p>
+<h2 id="database-views">Database views</h2>
+<p>The application uses two views:</p>
+<ul>
+<li><code>VIEW_OPERE_ARTISTI</code>, for reading artworks together with
+artists;</li>
+<li><code>VIEW_STATISTICI_GALERII_PICTURA</code>, for aggregated
+painting-gallery statistics.</li>
+</ul>
+<p>View names and SQL definitions are controlled exclusively on the
+server. The client cannot submit arbitrary SQL.</p>
+<h2 id="image-uploads">Image uploads</h2>
+<p>Curators and administrators can upload artwork images. JPEG, PNG and
+WebP are accepted. The file is checked through its MIME type and binary
+signature, and the filename is generated as a UUID to prevent collisions
+and user-controlled filenames.</p>
+<h2 id="testing-and-delivery">Testing and delivery</h2>
+<p>The application includes Jest and Supertest tests, ESLint and
+Prettier checks, coverage reporting and a GitHub Actions workflow.
+Docker Compose can start the application together with Oracle XE.</p>
+<p>This implementation extends the initial requirements with
+authentication, authorization, validation, automated testing, CI and
+containerized delivery.</p>
+</body>
+</html>
